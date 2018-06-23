@@ -1,0 +1,36 @@
+.input-field {
+
+	margin-bottom: $small;
+
+	label {
+		text-transform: uppercase;
+		display: block;
+		font-size: 12px;
+		color: $primary-font-color;
+		margin-bottom: 1px;
+		font-weight: normal;
+	}
+
+	input {
+		width:100%;
+
+		&[type="button"] {
+
+			padding: $small;
+			border-radius: 3px;
+			border: 1px solid transparent;
+			color: $accent-font-color;
+			font-size: 20px;
+			font-weight:bold;
+
+			&.primary {
+				background: $primary-button-color;
+			}
+			&.secondary {
+				background: $secondary-button-color;
+			}
+
+		}
+	}
+
+}
