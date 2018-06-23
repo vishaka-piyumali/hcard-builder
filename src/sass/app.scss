@@ -1,14 +1,19 @@
+// normalize
+@import 'normalize';
+
+// branding setting
 @import 'settings';
+@import 'grid';
 
-main {
-    width: 80%;
-    margin: 0 auto;
-}
+// branding styles
 
-div {
-    padding: 5px;
-}
+// App specific
+@import '../components/HCardBuilder/styles';
 
-label {
-    text-transform: uppercase;
+// Component Specific
+@import '../components/UI/Header/styles';
+@import '../components/UI/InputField/styles';
+
+.hide {
+    display: none;
 }

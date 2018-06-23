@@ -1,0 +1,121 @@
+.hcard-builder {
+
+	width: 100vw;
+
+	.form-container,
+	.preview-container {
+		padding: $large;
+	}
+
+	.form-container {
+		section {
+			margin-top: $medium;
+			&:after {
+				clear: both;
+				content: '';
+				display: table;
+			}
+			.col-1-2 {
+				&:nth-of-type(2n+1) {
+					padding-right: 1rem;
+					@media handheld, only screen and (max-width: 767px) {
+						padding-right: 0;
+					}
+				}
+
+				&:nth-of-type(2n) {
+					padding-left: 1rem;
+					padding-right: 0;
+					@media handheld, only screen and (max-width: 767px) {
+						padding-left: 0;
+					}
+				}
+			}
+		}
+		.section-header {
+			border-bottom: 1px solid $primary-border-color;
+		}
+	}
+
+	.preview-container {
+
+		height: 100vh;
+		background: whitesmoke;
+		@media handheld, only screen and (max-width: 767px) {
+			height: initial;
+		}
+
+		.preview {
+
+			margin: 0 auto;
+
+			h3 {
+				text-align: right;
+				text-transform: uppercase;
+				color: $secondary-font-color;
+				margin-bottom: $tiny;
+			}
+
+			.card {
+				color: #34495E;
+				background: white;
+				box-shadow: 0 2px 0 $primary-shadow-color;
+				height: 310px;
+
+				.card-header {
+
+					height: 100px;
+					background: #3A5062;
+					color: white;
+					position: relative;
+					h2 {
+						position: absolute;
+						bottom: 10px;
+						left: 20px;
+						max-width: 250px;
+					}
+					.avatar {
+						width: 80px;
+						height: 100px;
+						position: absolute;
+						right: $small;
+						top: $medium;
+						border: 1px solid $primary-border-color;
+						box-shadow: 0 1px 0 $primary-shadow-color;
+					}
+				}
+				.card-body {
+					height: 210px;
+					padding: $small $medium;
+					.col {
+						padding-right: 0;
+					}
+				}
+				.line {
+
+					height: 2.2rem;
+					border-bottom: 1px solid $primary-border-color;
+					position: relative;
+
+					span.label {
+						text-transform: uppercase;
+						color: grey;
+						font-size: 10px;
+						margin-bottom: 0;
+						position: absolute;
+						bottom: 0;
+						width: 60px;
+						text-align: left;
+					}
+					span.value {
+						position: absolute;
+						left: 61px;
+						bottom: 1px;
+						font-size: 12px;
+					}
+				}
+
+			}
+		}
+	}
+}
