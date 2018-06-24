@@ -40,7 +40,8 @@
 	.preview-container {
 
 		height: 100vh;
-		background: whitesmoke;
+		background: $secondary-bg-color;
+
 		@media handheld, only screen and (max-width: 767px) {
 			height: initial;
 		}
@@ -57,25 +58,26 @@
 			}
 
 			.card {
-				color: #34495E;
-				background: white;
+				color: $quaternary-font-color;
+				background: $primary-bg-color;
 				box-shadow: 0 2px 0 $primary-shadow-color;
 				height: 310px;
 
 				.card-header {
 
 					height: 100px;
-					background: #3A5062;
-					color: white;
+					background: $accent-bg-color;
+					color: $accent-font-color;
 					position: relative;
+
 					h2 {
 						position: absolute;
-						bottom: 10px;
-						left: 20px;
+						bottom: $small;
+						left: $medium;
 						max-width: 250px;
 					}
 					.avatar {
-						width: 80px;
+						width: 85px;
 						height: 100px;
 						position: absolute;
 						right: $small;
@@ -87,13 +89,10 @@
 				.card-body {
 					height: 210px;
 					padding: $small $medium;
-					.col {
-						padding-right: 0;
-					}
 				}
 				.line {
 
-					height: 2.2rem;
+					height: 30px;
 					border-bottom: 1px solid $primary-border-color;
 					position: relative;
 
