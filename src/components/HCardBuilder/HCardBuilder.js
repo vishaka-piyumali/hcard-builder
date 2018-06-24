@@ -137,21 +137,21 @@ class HCardBuilder extends React.Component {
 						<section>
 							<UIHeader className="section-header" level="4"> Personal Details </UIHeader>
 							{this.state.inputs.map((item, idx) => (
-								<div className="col-1-2">
+								<div className="col-1-2" key={this.state.inputs[idx].name}>
 									<UIInputField
-									key={this.state.inputs[idx].name}
-									name={this.state.inputs[idx].name}
-									type="text"
-									label={this.state.inputs[idx].text}
-									value={this.state.inputs[idx].value}
-									onInputChange={this.handleChange.bind(this, idx, 'personal')} />
+										key={this.state.inputs[idx].name}
+										name={this.state.inputs[idx].name}
+										type="text"
+										label={this.state.inputs[idx].text}
+										value={this.state.inputs[idx].value}
+										onInputChange={this.handleChange.bind(this, idx, 'personal')} />
 								</div>
 							))}
 						</section>
 						<section className="address">
 							<UIHeader className="section-header" level="4"> Address </UIHeader>
 							{this.state.address.map((item, idx) => (
-								<div className="col-1-2">
+								<div className="col-1-2" key={this.state.address[idx].name}>
 									<UIInputField
 											key={this.state.address[idx].name}
 											name={this.state.address[idx].name}

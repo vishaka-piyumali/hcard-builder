@@ -62,7 +62,7 @@ class HCardPreview extends React.Component {
 							{personalData.postcode}
 						</span></div>
 					</div>
-					<div class="mobile-col-1-2 col-1-2">
+					<div className="mobile-col-1-2 col-1-2">
 						<div className="line">
 						<span className="label">
 							Country
