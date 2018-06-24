@@ -1,6 +1,7 @@
 .hcard-builder {
 
 	width: 100vw;
+	background: $secondary-bg-color;
 
 	.form-container,
 	.preview-container {
@@ -8,6 +9,9 @@
 	}
 
 	.form-container {
+
+		background: $primary-bg-color;
+
 		section {
 			margin-top: $medium;
 			&:after {
@@ -40,7 +44,6 @@
 	.preview-container {
 
 		height: 100vh;
-		background: $secondary-bg-color;
 
 		@media handheld, only screen and (max-width: 767px) {
 			height: initial;

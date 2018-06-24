@@ -1,6 +1,7 @@
 .input-field {
 
-	margin-bottom: $medium;
+	margin-bottom: $small;
+	position: relative;
 
 	label {
 		text-transform: uppercase;
@@ -11,18 +12,27 @@
 		font-weight: normal;
 	}
 
+	.error {
+		display: none;
+		&.invalid {
+			color: $error-font-color;
+			margin-top: 1px;
+			display: block;
+			position: absolute;
+			bottom: 6px;
+			font-size: 10px;
+		}
+	}
+
 	input {
 
-		width:98%;
-		padding: $tiny;
+		width: 98%;
+		padding: $small;
+		margin-bottom: $medium;
 		border: 1px solid $primary-border-color;
 		border-radius: 2px;
-		line-height: 25px;
+		line-height: 20px;
 		font-size: 16px;
-
-		&.invalid {
-			border-color: $error-font-color;
-		}
 
 		&[type="button"] {
 

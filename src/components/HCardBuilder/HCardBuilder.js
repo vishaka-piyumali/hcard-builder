@@ -20,12 +20,16 @@ class HCardBuilder extends React.Component {
 					'text': 'Given Name',
 					'name': 'givenName',
 					'value': '',
+					'rules': validator.isAlphanumeric,
+					'invalidMessage': 'Input required',
 					'isValid': true
 				},
 				{
 					'text': 'Surname',
 					'name': 'familyName',
 					'value': '',
+					'rules': validator.isAlphanumeric,
+					'invalidMessage': 'Input required',
 					'isValid': true
 				},
 				{
@@ -59,12 +63,16 @@ class HCardBuilder extends React.Component {
 					'text': 'Suburb',
 					'name': 'suburb',
 					'value': '',
+					'rules': validator.isAlpha,
+					'invalidMessage': 'Invalid input for Suburb',
 					'isValid': true
 				},
 				{
 					'text': 'State',
 					'name': 'state',
 					'value': '',
+					'rules': validator.isAlpha,
+					'invalidMessage': 'Invalid input for State',
 					'isValid': true
 				},
 				{
@@ -72,12 +80,15 @@ class HCardBuilder extends React.Component {
 					'name': 'postcode',
 					'value': '',
 					'rules': validator.isNumeric,
+					'invalidMessage': 'Invalid input for Postcode',
 					'isValid': true
 				},
 				{
 					'text': 'Country',
 					'name': 'country',
 					'value': '',
+					'rules': validator.isAlpha,
+					'invalidMessage': 'Invalid input for Country',
 					'isValid': true
 				}
 			]
@@ -140,14 +151,50 @@ class HCardBuilder extends React.Component {
 		}
 	}
 
-	onFileDrop (files) {
-		if (window.FileReader) {
-			this.processAvatarUpload(files[0])
-		}
+	validateInputs () {
+		let personalData = [...this.state.inputs],
+			addressData = [...this.state.address],
+			isValid = true;
+
+		personalData = personalData.map(function(idx) {
+			let validatorCall = (idx && idx.rules) || undefined;
+
+			if (validatorCall !== undefined){
+				let args = [];
+				idx.isValid = validatorCall(idx.value, ...args, idx.options);
+				if (!idx.isValid) {
+					isValid = false;
+				}
+			}
+			return idx;
+		})
+
+		addressData = addressData.map(function(idx) {
+			let validatorCall = (idx && idx.rules) || undefined;
+
+			if (validatorCall !== undefined){
+				let args = [];
+				idx.isValid = validatorCall(idx.value, ...args, idx.options);
+				if (!idx.isValid) {
+					isValid = false;
+				}
+			}
+			return idx;
+		})
+
+		this.setState({ personalData, addressData });
+
+		return isValid;
 	}
 
-	handleSubmit(event) {
-		alert('form submited: ' + validator.isEmail(this.state.inputs[2].value));
+	handleSubmit (event) {
+		let valid = this.validateInputs();
+		if (valid) {
+			alert('Thank you.');
+		} else {
+			alert('Please enter valid inputs.');
+		}
+
 		event.preventDefault();
 	}
 
@@ -168,6 +215,7 @@ class HCardBuilder extends React.Component {
 										label={this.state.inputs[idx].text}
 										value={this.state.inputs[idx].value}
 										isValid={this.state.inputs[idx].isValid}
+										errorMessage={this.state.inputs[idx].invalidMessage}
 										onInputChange={this.handleChange.bind(this, idx, 'personal')} />
 								</div>
 							))}
@@ -183,6 +231,7 @@ class HCardBuilder extends React.Component {
 										label={this.state.address[idx].text}
 										value={this.state.address[idx].value}
 										isValid={this.state.address[idx].isValid}
+										errorMessage={this.state.address[idx].invalidMessage}
 										onInputChange={this.handleChange.bind(this, idx, 'address')} />
 								</div>
 							))}

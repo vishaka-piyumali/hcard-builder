@@ -18,8 +18,7 @@ class InputField extends React.Component {
 
 		const props = this.props;
 		const displayValidation = props.isValid === true && props.type !== 'button' && props.type !== 'file';
-		let fieldClass = props.className || '';
-		fieldClass = (displayValidation ? props.className : 'invalid ' + props.className);
+		let errorClasses =  (displayValidation ? 'error' : 'invalid error');
 
 		return (
 			<div className="input-field">
@@ -29,9 +28,12 @@ class InputField extends React.Component {
 					type={props.type}
 					value={props.value}
 					onClick={props.onClick}
-					className={fieldClass}
+					className={props.className}
 					onChange={props.onInputChange}
 				/>
+				<div className={errorClasses}>
+					{props.errorMessage}
+				</div>
 			</div>
 		);
 	}
