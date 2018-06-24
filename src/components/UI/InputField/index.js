@@ -15,7 +15,12 @@ class InputField extends React.Component {
 	}
 
 	render() {
+
 		const props = this.props;
+		const displayValidation = props.isValid === true && props.type !== 'button' && props.type !== 'file';
+		let fieldClass = props.className || '';
+		fieldClass = (displayValidation ? props.className : 'invalid ' + props.className);
+
 		return (
 			<div className="input-field">
 				{this.renderLabel()}
@@ -24,7 +29,7 @@ class InputField extends React.Component {
 					type={props.type}
 					value={props.value}
 					onClick={props.onClick}
-					className={props.className}
+					className={fieldClass}
 					onChange={props.onInputChange}
 				/>
 			</div>

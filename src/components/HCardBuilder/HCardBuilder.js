@@ -1,5 +1,7 @@
 import React from 'react';
 
+import validator from 'validator';
+
 import UIHeader from '../UI/Header';
 import UIInputField from '../UI/InputField';
 import UIInputFile from '../UI/InputFile';
@@ -17,53 +19,66 @@ class HCardBuilder extends React.Component {
 			inputs: [{
 					'text': 'Given Name',
 					'name': 'givenName',
-					'value': ''
+					'value': '',
+					'isValid': true
 				},
 				{
 					'text': 'Surname',
 					'name': 'familyName',
-					'value': ''
+					'value': '',
+					'isValid': true
 				},
 				{
 					'text': 'Email',
 					'name': 'email',
-					'value': ''
+					'value': '',
+					'rules': validator.isEmail,
+					'invalidMessage': 'Invalid Email',
+					'isValid': true
 				},
 				{
 					'text': 'Phone',
 					'name': 'phone',
-					'value': ''
+					'value': '',
+					'isValid': true
 				}
 			],
 			address: [{
 					'text': 'House name or #',
 					'name': 'houseNo',
-					'value': ''
+					'value': '',
+					'isValid': true
 				},
 				{
 					'text': 'Street',
 					'name': 'street',
-					'value': ''
+					'value': '',
+					'isValid': true
 				},
 				{
 					'text': 'Suburb',
 					'name': 'suburb',
-					'value': ''
+					'value': '',
+					'isValid': true
 				},
 				{
 					'text': 'State',
 					'name': 'state',
-					'value': ''
+					'value': '',
+					'isValid': true
 				},
 				{
 					'text': 'Postcode',
 					'name': 'postcode',
-					'value': ''
+					'value': '',
+					'rules': validator.isNumeric,
+					'isValid': true
 				},
 				{
 					'text': 'Country',
 					'name': 'country',
-					'value': ''
+					'value': '',
+					'isValid': true
 				}
 			]
 		};
@@ -89,6 +104,14 @@ class HCardBuilder extends React.Component {
 			data = [...this.state.address];
 		}
 		data[idx].value = value;
+		var validateMethod = data[idx].rules;
+
+		if (validateMethod !== undefined){
+			var args = [];
+			data[idx].isValid = validateMethod(data[idx].value, ...args, data[idx].options);
+			console.log(data[idx].isValid);
+		}
+
 		this.setState({ data });
 	}
 
@@ -124,7 +147,7 @@ class HCardBuilder extends React.Component {
 	}
 
 	handleSubmit(event) {
-		alert('form submited: ');
+		alert('form submited: ' + validator.isEmail(this.state.inputs[2].value));
 		event.preventDefault();
 	}
 
@@ -144,6 +167,7 @@ class HCardBuilder extends React.Component {
 										type="text"
 										label={this.state.inputs[idx].text}
 										value={this.state.inputs[idx].value}
+										isValid={this.state.inputs[idx].isValid}
 										onInputChange={this.handleChange.bind(this, idx, 'personal')} />
 								</div>
 							))}
@@ -153,12 +177,13 @@ class HCardBuilder extends React.Component {
 							{this.state.address.map((item, idx) => (
 								<div className="col-1-2" key={this.state.address[idx].name}>
 									<UIInputField
-											key={this.state.address[idx].name}
-											name={this.state.address[idx].name}
-											type="text"
-											label={this.state.address[idx].text}
-											value={this.state.address[idx].value}
-											onInputChange={this.handleChange.bind(this, idx, 'address')} />
+										key={this.state.address[idx].name}
+										name={this.state.address[idx].name}
+										type="text"
+										label={this.state.address[idx].text}
+										value={this.state.address[idx].value}
+										isValid={this.state.address[idx].isValid}
+										onInputChange={this.handleChange.bind(this, idx, 'address')} />
 								</div>
 							))}
 						</section>

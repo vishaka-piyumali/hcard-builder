@@ -20,6 +20,10 @@
 		line-height: 25px;
 		font-size: 16px;
 
+		&.invalid {
+			border-color: $error-font-color;
+		}
+
 		&[type="button"] {
 
 			padding: $small;
@@ -39,5 +43,7 @@
 
 		}
 	}
+
+
 
 }
