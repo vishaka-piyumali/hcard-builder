@@ -21,7 +21,7 @@ class HCardBuilder extends React.Component {
 					'name': 'givenName',
 					'value': '',
 					'rules': validator.isAlphanumeric,
-					'invalidMessage': 'Input required',
+					'invalidMessage': 'Invalid input',
 					'isValid': true
 				},
 				{
@@ -29,7 +29,7 @@ class HCardBuilder extends React.Component {
 					'name': 'familyName',
 					'value': '',
 					'rules': validator.isAlphanumeric,
-					'invalidMessage': 'Input required',
+					'invalidMessage': 'Invalid input',
 					'isValid': true
 				},
 				{
@@ -115,13 +115,6 @@ class HCardBuilder extends React.Component {
 			data = [...this.state.address];
 		}
 		data[idx].value = value;
-		var validateMethod = data[idx].rules;
-
-		if (validateMethod !== undefined){
-			var args = [];
-			data[idx].isValid = validateMethod(data[idx].value, ...args, data[idx].options);
-			console.log(data[idx].isValid);
-		}
 
 		this.setState({ data });
 	}

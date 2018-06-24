@@ -14,11 +14,36 @@ class InputField extends React.Component {
 		}
 	}
 
+	renderError() {
+
+		const props = this.props;
+
+		if (props.type === 'button' || props.type === 'file') {
+			return (
+				null
+			)
+		}
+
+		let errorClasses =  ['error'];
+
+		if (!props.isValid) {
+			errorClasses.push('invalid');
+		}
+
+		if (props.hideError) {
+			errorClasses.push('hide');
+		}
+
+		return (
+			<div className={errorClasses.join(' ')}>
+				{props.errorMessage}
+			</div>
+		)
+	}
+
 	render() {
 
 		const props = this.props;
-		const displayValidation = props.isValid === true && props.type !== 'button' && props.type !== 'file';
-		let errorClasses =  (displayValidation ? 'error' : 'invalid error');
 
 		return (
 			<div className="input-field">
@@ -31,9 +56,7 @@ class InputField extends React.Component {
 					className={props.className}
 					onChange={props.onInputChange}
 				/>
-				<div className={errorClasses}>
-					{props.errorMessage}
-				</div>
+				{this.renderError()}
 			</div>
 		);
 	}
