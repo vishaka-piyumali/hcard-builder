@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Georgia';
-    src: url('/fonts/Georgia.eot');
-    src: url('/fonts/Georgia.eot') format('embedded-opentype'),
-         url('/fonts/Georgia.woff2') format('woff2'),
-         url('/fonts/Georgia.woff') format('woff'),
-         url('/fonts/Georgia.ttf') format('truetype'),
-         url('/fonts/Georgia.svg#Georgia') format('svg');
+    src: url('/static/fonts/Georgia.eot');
+    src: url('/static/fonts/Georgia.eot') format('embedded-opentype'),
+         url('/static/fonts/Georgia.woff2') format('woff2'),
+         url('/static/fonts/Georgia.woff') format('woff'),
+         url('/static/fonts/Georgia.ttf') format('truetype'),
+         url('/static/fonts/Georgia.svg#Georgia') format('svg');
 }
 
 body, h1, h2, h3, h4, h5, h6, input, label {
