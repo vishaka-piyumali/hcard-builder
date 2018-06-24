@@ -78,6 +78,9 @@
 						bottom: $small;
 						left: $medium;
 						max-width: 250px;
+						@media handheld, only screen and (max-width: 767px) {
+							max-width: 200px;
+						}
 					}
 					.avatar {
 						width: 85px;
