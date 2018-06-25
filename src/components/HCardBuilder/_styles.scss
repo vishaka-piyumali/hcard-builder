@@ -11,7 +11,10 @@
 	.form-container {
 
 		background: $primary-bg-color;
-		height: 100vh;
+
+		@media only screen and (min-width : 1224px) {
+			height: 100vh;
+		}
 
 		section {
 			margin-top: $medium;
